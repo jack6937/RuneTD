@@ -72,7 +72,7 @@ class PoisonRune (classes.Rune):
         rune.fire_speed *= 1.3
 
 class CriticalRune (classes.Rune):
-    cost = 20
+    cost = 30
     shot_range = 9
     fire_speed = 1000
     
@@ -80,11 +80,11 @@ class CriticalRune (classes.Rune):
     shot_type = shots.CriticalBullet
     
     def apply_effects(self, rune):
-        rune.effects['damage'] += 2
+        rune.effects['damage'] += 1
         rune.fire_speed *= 1.1
     
     def remove_effects(self, rune):
-        rune.effects['damage'] -= 2
+        rune.effects['damage'] -= 1
         rune.fire_speed /= 1.1
 
 class WeakenRune (classes.Rune):
@@ -114,18 +114,18 @@ class WeakenRune (classes.Rune):
         
         return super(WeakenRune, self).shoot()
 
-class CatRune (classes.Rune):
+class NuclearRune (classes.Rune):
     cost = 40
     shot_range = 15
-    fire_speed = 1200
+    fire_speed = 2000
     
-    image_name = 'Cat rune'
-    shot_type = shots.CatBullet
+    image_name = 'Nuclear rune'
+    shot_type = shots.NuclearBullet
     
     def apply_effects(self, rune):
-        rune.effects['damage'] += 10
-        rune.fire_speed *= 0.5
+        rune.effects['damage'] += 5
+        rune.fire_speed *= 1.2
     
     def remove_effects(self, rune):
-        rune.effects['damage'] -= 10
-        rune.fire_speed /= 0.5
+        rune.effects['damage'] -= 5
+        rune.fire_speed /= 1.2

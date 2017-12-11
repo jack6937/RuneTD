@@ -24,22 +24,24 @@
         ],
         "waves": [
             [
+                {"enemy":"boss", "count":1, "delay":0.5},
                 {"enemy":"Red triangle", "count":20, "delay":0.2}
             ],
             [
-                {"enemy":"Red triangle", "count":10, "delay":0.2},
-                {"enemy":"Blue circle", "count":10, "delay":0.3}
+                {"enemy":"Red triangle", "count":20, "delay":0.2},
+                {"enemy":"Blue circle", "count":20, "delay":0.3}
             ],
             [
-                {"enemy":"Red triangle", "count":10, "delay":0.2},
-                {"enemy":"Blue circle", "count":10, "delay":0.3},
+                {"enemy":"Red triangle", "count":20, "delay":0.2},
+                {"enemy":"Blue circle", "count":20, "delay":0.3},
                 {"enemy":"Pink square", "count":10, "delay":0.4}
             ],
             [
-                {"enemy":"Red triangle", "count":10, "delay":0.2},
-                {"enemy":"Blue circle", "count":10, "delay":0.3},
+                {"enemy":"Red triangle", "count":20, "delay":0.2},
+                {"enemy":"Blue circle", "count":20, "delay":0.3},
                 {"enemy":"Pink square", "count":10, "delay":0.4},
-                {"enemy":"Orange octagon", "count":10, "delay":0.5}
+                { "enemy": "Orange octagon", "count": 10, "delay": 0.5 },
+                {"enemy":"boss", "count":1, "delay":0.5}
             ]
         ],
         "reward": 10
@@ -69,16 +71,25 @@
         ],
         "waves": [
             [
-                {"enemy":"Blue circle", "count":20, "delay":0.25}
-            ],
-            [
                 {"enemy":"Blue circle", "count":20, "delay":0.25},
                 {"enemy":"Pink square", "count":20, "delay":0.3}
             ],
             [
                 {"enemy":"Blue circle", "count":20, "delay":0.25},
                 {"enemy":"Pink square", "count":20, "delay":0.3},
-                {"enemy":"Orange octagon", "count":20, "delay":0.4}
+                { "enemy": "Orange octagon", "count": 10, "delay": 0.5 }
+
+            ],
+            [
+                {"enemy":"boss", "count":1, "delay":0.5},
+                {"enemy":"Blue circle", "count":20, "delay":0.25},
+                {"enemy":"Pink square", "count":20, "delay":0.3},
+                {"enemy":"boss", "count":1, "delay":0.5},
+                {"enemy":"Orange octagon", "count":20, "delay":0.4},
+                {"enemy":"boss", "count":1, "delay":0.5}
+            ],
+            [
+                {"enemy":"Blue circle", "count":20, "delay":0.25}
             ]
         ],
         "reward": 10

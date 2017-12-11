@@ -86,13 +86,13 @@ class WeakenBullet (classes.Bullet):
     def apply_effects(self):
         self.sprite_target.armour -= 1
 
-class CatBullet (classes.Bullet):
-    move_speed = 1.5
+class NuclearBullet (classes.Bullet):
+    move_speed = 0.7
     damage = 0
     
     def __init__(self, game, position, target, rune=None):
-        super(CatBullet, self).__init__(game, position, target, rune)
-        self.image = game.resources['Cat bullet']
+        super(NuclearBullet, self).__init__(game, position, target, rune)
+        self.image = game.resources['Emerald bullet']
     
     def apply_effects(self):
         pass
@@ -100,5 +100,5 @@ class CatBullet (classes.Bullet):
     def hit(self):
         if random.random() > 0.2:
             self.damage = 200
-        super(CatBullet, self).hit()
+        super(NuclearBullet, self).hit()
 

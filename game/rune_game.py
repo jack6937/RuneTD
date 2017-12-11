@@ -8,6 +8,7 @@ import pygame
 from engine import engine
 from game import classes, enemies, runes, shots
 
+
 class RuneGame (engine.EngineV2):
     name = "Rune TD"
     tile_size = 35
@@ -43,6 +44,7 @@ class RuneGame (engine.EngineV2):
             "Blue circle":      pygame.image.load('media/blue_circle.png'),
             "Pink square":      pygame.image.load('media/pink_square.png'),
             "Orange octagon":   pygame.image.load('media/orange_octagon.png'),
+            "boss":             pygame.image.load('media/boss.png'),
             
             # Runes
             "Pink rune":    pygame.image.load('media/pink_rune.png'),
@@ -51,7 +53,7 @@ class RuneGame (engine.EngineV2):
             "Green rune":   pygame.image.load('media/green_rune.png'),
             "Red rune":     pygame.image.load('media/red_rune.png'),
             "Teal rune":    pygame.image.load('media/teal_rune.png'),
-            "Cat rune":     pygame.image.load('media/cat_rune.png'),
+            "Nuclear rune":     pygame.image.load('media/emerald_rune.png'),
             
             # Bullets
             "Pink bullet":      pygame.image.load('media/pink_bullet.png'),
@@ -60,7 +62,7 @@ class RuneGame (engine.EngineV2):
             "Green bullet":     pygame.image.load('media/green_bullet.png'),
             "Red bullet":       pygame.image.load('media/red_bullet.png'),
             "Teal bullet":      pygame.image.load('media/teal_bullet.png'),
-            "Cat bullet":       pygame.image.load('media/cat_bullet.png'),
+            "Emerald bullet":       pygame.image.load('media/emerald_bullet.png'),
         }
         
         self.rune_types = {
@@ -70,7 +72,7 @@ class RuneGame (engine.EngineV2):
             "Poison":   runes.PoisonRune,
             "Critical": runes.CriticalRune,
             "Weaken":   runes.WeakenRune,
-            "Cat":      runes.CatRune,
+            "Nuclear":  runes.NuclearRune,
         }
         
         self.enemy_types = {
@@ -78,6 +80,7 @@ class RuneGame (engine.EngineV2):
             "Blue circle":      enemies.BlueCircle,
             "Pink square":      enemies.PinkSquare,
             "Orange octagon":   enemies.OrangeOctagon,
+            "boss":             enemies.Bossmob,
         }
         
         self.tiles = {}
@@ -153,7 +156,7 @@ class RuneGame (engine.EngineV2):
         self.add_button(self.splash_rune_button)
         self.splash_rune_text   = engine.Text_display((self.window_width - self.menu_width + 5, 210), "Splash rune", colour=(255,255,255))
         self.splash_rune_info     = engine.Text_display((self.window_width - self.menu_width + 5, 230),
-            "Cost: %d, Effect: +10%% rate of fire" % runes.SplashRune.cost, font_size=14, colour=(255,255,255))
+            "Cost: %d, Effect: , +10%% rate of fire" % runes.SplashRune.cost, font_size=14, colour=(255,255,255))
         
         self.poison_rune_button  = engine.Button((self.window_width - self.menu_width + 5, 255), self.resources['Green rune'])
         self.poison_rune_button.button_up = self.select_rune_type
@@ -169,7 +172,7 @@ class RuneGame (engine.EngineV2):
         self.add_button(self.critical_rune_button)
         self.critical_rune_text    = engine.Text_display((self.window_width - self.menu_width + 5, 370), "Critical rune", colour=(255,255,255))
         self.critical_rune_info     = engine.Text_display((self.window_width - self.menu_width + 5, 390),
-            "Cost: %d, Effect: +2 Damage, -10%% rate of fire" % runes.CriticalRune.cost, font_size=14, colour=(255,255,255))
+            "Cost: %d, Effect: +1 Damage, -10%% rate of fire" % runes.CriticalRune.cost, font_size=14, colour=(255,255,255))
         
         self.weaken_rune_button  = engine.Button((self.window_width - self.menu_width + 5, 415), self.resources['Teal rune'])
         self.weaken_rune_button.button_up = self.select_rune_type
@@ -179,14 +182,19 @@ class RuneGame (engine.EngineV2):
         self.weaken_rune_info     = engine.Text_display((self.window_width - self.menu_width + 5, 470),
             "Cost: %d, Effect: +0.5 range" % runes.WeakenRune.cost, font_size=14, colour=(255,255,255))
 
-        self.cat_rune_button  = engine.Button((self.window_width - self.menu_width + 5, 495), self.resources['Cat rune'])
-        self.cat_rune_button.button_up = self.select_rune_type
-        self.cat_rune_button.button_up_kwargs = {"rune":"Cat"}
-        self.add_button(self.cat_rune_button)
-        self.cat_rune_text    = engine.Text_display((self.window_width - self.menu_width + 5, 530), "Cat rune", colour=(255,255,255))
-        self.cat_rune_info     = engine.Text_display((self.window_width - self.menu_width + 5, 550),
-            "Cost: %d, Effect: +10 Damage, -50%% rate of fire" % runes.CatRune.cost, font_size=14, colour=(255,255,255))
-        
+        self.nuclear_rune_button  = engine.Button((self.window_width - self.menu_width + 5, 495), self.resources['Nuclear rune'])
+        self.nuclear_rune_button.button_up = self.select_rune_type
+        self.nuclear_rune_button.button_up_kwargs = {"rune":"Nuclear"}
+        self.add_button(self.nuclear_rune_button)
+        self.nuclear_rune_text    = engine.Text_display((self.window_width - self.menu_width + 5, 530), "Nuclear rune", colour=(255,255,255))
+        self.nuclear_rune_info     = engine.Text_display((self.window_width - self.menu_width + 5, 550),
+            "Cost: %d, Effect: +5 Damage, -20%% rate of fire" % runes.NuclearRune.cost, font_size=14, colour=(255,255,255))
+
+        self.game_info     = engine.Text_display((self.window_width - self.menu_width + 5, 630),
+            "if you do right click, you can sell that runes  ", font_size=14, colour=(255,255,255))
+ 
+
+                
         # Rune info text
         self.rune_info_text = []
         
@@ -234,9 +242,11 @@ class RuneGame (engine.EngineV2):
         self.sprites.add(self.weaken_rune_text)
         self.sprites.add(self.weaken_rune_info)
 
-        self.sprites.add(self.cat_rune_button)
-        self.sprites.add(self.cat_rune_text)
-        self.sprites.add(self.cat_rune_info)
+        self.sprites.add(self.nuclear_rune_button)
+        self.sprites.add(self.nuclear_rune_text)
+        self.sprites.add(self.nuclear_rune_info)
+
+        self.sprites.add(self.game_info)
         
         # Information on the last x/y of the mouse
         self.last_mouse_pos = (-1, -1)
@@ -265,8 +275,8 @@ class RuneGame (engine.EngineV2):
             x, y = self.critical_rune_button.rect.left, self.critical_rune_button.rect.top
         elif rune == "Weaken":
             x, y = self.weaken_rune_button.rect.left, self.weaken_rune_button.rect.top
-        elif rune == "Cat":
-            x, y = self.cat_rune_button.rect.left, self.cat_rune_button.rect.top
+        elif rune == "Nuclear":
+            x, y = self.nuclear_rune_button.rect.left, self.nuclear_rune_button.rect.top
          
         self.rune_selector.rect.left = x-3
         self.rune_selector.rect.top = y-3
@@ -303,6 +313,13 @@ class RuneGame (engine.EngineV2):
         
         if self.lives <= 0:
             self.lose_game()
+            print("""
+            ########
+            Game over!
+            ########
+            """)
+       
+            self.quit()
     
     def lose_game(self):
         for e in self.enemies: e.disabled = True
@@ -501,6 +518,7 @@ VICTORY!
         # Reset level counters
         self.level += 1
         self.wave = -1
+        
         
         # Load terrain
         with open('game/levels.json') as f:

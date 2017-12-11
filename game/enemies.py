@@ -1,8 +1,8 @@
 from game import classes
 
 class RedTriangle (classes.Enemy):
-    max_hp = 3
-    reward = 1
+    max_hp = 5
+    reward = 0
     armour = 0
     
     move_speed = 0.1
@@ -13,7 +13,7 @@ class RedTriangle (classes.Enemy):
         super(RedTriangle, self).__init__(game)
 
 class BlueCircle (classes.Enemy):
-    max_hp = 5
+    max_hp = 8
     reward = 1
     armour = 1
     
@@ -25,7 +25,7 @@ class BlueCircle (classes.Enemy):
         super(BlueCircle, self).__init__(game)
 
 class PinkSquare (classes.Enemy):
-    max_hp = 8
+    max_hp = 10
     reward = 1
     armour = 2
     
@@ -37,7 +37,7 @@ class PinkSquare (classes.Enemy):
         super(PinkSquare, self).__init__(game)
 
 class OrangeOctagon (classes.Enemy):
-    max_hp = 10
+    max_hp = 15
     reward = 1
     armour = 4
     
@@ -47,3 +47,15 @@ class OrangeOctagon (classes.Enemy):
     
     def __init__(self, game):
         super(OrangeOctagon, self).__init__(game)
+
+class Bossmob (classes.Enemy):
+    max_hp = 150
+    reward = 10
+    armour = 50
+    
+    move_speed = 0.25
+    
+    image_name = "boss"
+    
+    def __init__(self, game):
+        super(Bossmob, self).__init__(game)
