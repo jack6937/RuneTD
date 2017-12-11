@@ -173,6 +173,7 @@ class EngineV2 (object):
             for event in pygame.event.get():
                 if event.type in func_dict:
                     func_dict[event.type](event)
+                    
                 else:
                     # raise Exception("Unhanded event {0}".format(event))
                     pass
