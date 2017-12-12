@@ -42,9 +42,10 @@ class EngineV2 (object):
         """
         raise Exception("{0}.game_logic() is not implimented".format(self.__class__))
     
-    def quit(self):
+    def quit(self, event):
         pygame.quit()
         sys.exit()
+
     
     # def _waitForPlayerToPressKey():
     #   while True:

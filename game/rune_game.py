@@ -53,7 +53,6 @@ class RuneGame (engine.EngineV2):
             "Green rune":   pygame.image.load('media/green_rune.png'),
             "Red rune":     pygame.image.load('media/red_rune.png'),
             "Teal rune":    pygame.image.load('media/teal_rune.png'),
-
             "Nuclear rune":     pygame.image.load('media/emerald_rune.png'),
             "Doum rune":     pygame.image.load('media/doum_rune.png'),
 
@@ -65,7 +64,7 @@ class RuneGame (engine.EngineV2):
             "Green bullet":     pygame.image.load('media/green_bullet.png'),
             "Red bullet":       pygame.image.load('media/red_bullet.png'),
             "Teal bullet":      pygame.image.load('media/teal_bullet.png'),
-            "Emerald bullet":       pygame.image.load('media/emerald_bullet.png'),
+            "Emerald bullet":   pygame.image.load('media/emerald_bullet.png'),
         }
         
         self.rune_types = {
@@ -197,17 +196,14 @@ class RuneGame (engine.EngineV2):
             "Cost: %d, Effect: +5 Damage, -20%% rate of fire" % runes.NuclearRune.cost, font_size=14, colour=(255,255,255))
 
         self.game_info     = engine.Text_display((self.window_width - self.menu_width + 5, 630),
-            "if you do right click, you can sell that runes  ", font_size=14, colour=(255,255,255))
+            "if you do right mouse click, you can sell that runes.", font_size=20, colour=(210,162,108))
+        self.game_info2     = engine.Text_display((self.window_width - self.menu_width + 5, 655),
+            "BUT!! YOU WILL GET ONLY 50% PRICE FOR EACH ONE", font_size=20, colour=(255,0,0))
  
-        
+        self.doum_rune_text   = engine.Text_display((self.window_width - self.menu_width + 5, 610), "#HONEY TIP#", colour=(224,253,108))
         self.doum_rune_button = engine.Button((self.window_width - self.menu_width + 5, 575), self.resources['Doum rune'])
-        self.doum_rune_button.button_up = self.select_rune_type
-        self.doum_rune_button.button_up_kwargs = {"rune":"Doum"}
         self.add_button(self.doum_rune_button)
-        self.doum_rune_text  = engine.Text_display((self.window_width - self.menu_width + 5, 610), "Doum mal", colour=(255,255,255))
-        self.game_info = engine.Text_display((self.window_width - self.menu_width + 5,630),
-            "if you do right click, you can sell that runes ", font_size=14, colour=(255,255,255))
-        
+
 
         # Rune info text
         self.rune_info_text = []
@@ -261,9 +257,9 @@ class RuneGame (engine.EngineV2):
         self.sprites.add(self.nuclear_rune_info)
 
         self.sprites.add(self.game_info)
-        
-        self.sprites.add(self.doum_rune_button)
+        self.sprites.add(self.game_info2)
         self.sprites.add(self.doum_rune_text)
+        self.sprites.add(self.doum_rune_button)
         self.sprites.add(self.game_info)
         
         # Information on the last x/y of the mouse
@@ -295,8 +291,7 @@ class RuneGame (engine.EngineV2):
             x, y = self.weaken_rune_button.rect.left, self.weaken_rune_button.rect.top
         elif rune == "Nuclear":
             x, y = self.nuclear_rune_button.rect.left, self.nuclear_rune_button.rect.top
-        elif rune == "Doum":
-            x, y = self.doum_rune_button.rect.left, self.doum_rune_button.rect.top
+
               
 
         self.rune_selector.rect.left = x-3
@@ -331,7 +326,6 @@ class RuneGame (engine.EngineV2):
         self.remove_enemy(enemy)
         self.lives -= 1
         self.lives_display.text = "%s %s" % (self.lives, "life" if self.lives == 1 else "lives")
-        
         if self.lives <= 0:
             self.lose_game()
             print("""
@@ -340,7 +334,8 @@ class RuneGame (engine.EngineV2):
             ########
             """)
        
-            self.quit()
+            self.quit(enemy);
+
     
     def lose_game(self):
         for e in self.enemies: e.disabled = True
@@ -480,12 +475,13 @@ class RuneGame (engine.EngineV2):
         self.load_level()
     
     def victory(self):
+        a = 1;
         print("""
 ########
 VICTORY!
 ########
 """)
-        self.quit()
+        self.quit(a)
     
     def handle_mouseup(self, event):
         x, y = event.pos

@@ -19,12 +19,11 @@
             "0 000000000 0 000000",
             "0 0   00000 0      E",
             "0 0 0 00000 00000000",
-            "0   0              S",
+            "0   0              0",
             "00000000000000000000"
         ],
         "waves": [
             [
-                {"enemy":"boss", "count":1, "delay":0.5},
                 {"enemy":"Red triangle", "count":20, "delay":0.2}
             ],
             [
@@ -41,7 +40,7 @@
                 {"enemy":"Blue circle", "count":20, "delay":0.3},
                 {"enemy":"Pink square", "count":10, "delay":0.4},
                 { "enemy": "Orange octagon", "count": 10, "delay": 0.5 },
-                {"enemy":"boss", "count":1, "delay":0.5}
+                {"enemy":"boss", "count":3, "delay":0.5}
             ]
         ],
         "reward": 10
@@ -72,21 +71,24 @@
         "waves": [
             [
                 {"enemy":"Blue circle", "count":20, "delay":0.25},
-                {"enemy":"Pink square", "count":20, "delay":0.3}
+                {"enemy":"boss", "count":2, "delay":0.5},
+                {"enemy":"Pink square", "count":20, "delay":0.3},
+                { "enemy": "Orange octagon", "count": 10, "delay": 0.5 }
             ],
             [
                 {"enemy":"Blue circle", "count":20, "delay":0.25},
                 {"enemy":"Pink square", "count":20, "delay":0.3},
-                { "enemy": "Orange octagon", "count": 10, "delay": 0.5 }
+                {"enemy":"boss", "count":3, "delay":0.5},
+                { "enemy": "Orange octagon", "count": 20, "delay": 0.5 }
 
             ],
             [
                 {"enemy":"boss", "count":1, "delay":0.5},
                 {"enemy":"Blue circle", "count":20, "delay":0.25},
                 {"enemy":"Pink square", "count":20, "delay":0.3},
-                {"enemy":"boss", "count":1, "delay":0.5},
+                {"enemy":"boss", "count":5, "delay":0.5},
                 {"enemy":"Orange octagon", "count":20, "delay":0.4},
-                {"enemy":"boss", "count":1, "delay":0.5}
+                {"enemy":"boss", "count":2, "delay":0.5}
             ],
             [
                 {"enemy":"Blue circle", "count":20, "delay":0.25}
