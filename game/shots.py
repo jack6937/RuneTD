@@ -100,5 +100,5 @@ class NuclearBullet (classes.Bullet):
     def hit(self):
         if random.random() > 0.2:
             self.damage = 200
-        super(NuclearBullet, self).hit()
+            super(NuclearBullet, self).hit()
 
